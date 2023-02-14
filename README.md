@@ -9,3 +9,4 @@
 
 - [EventBus](./EventBus.js)
 - [网络封装](./network/request.js)
+- [摇一摇切环境](./shake.js)
