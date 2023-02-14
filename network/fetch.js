@@ -50,67 +50,11 @@ export function upload(options={}) {
   });
 }
 
-export function uploads(files) {
-  const formData = new FormData();
-  // const photos = document.querySelector('input[type="file"][multiple]'); // <input type="file" multiple />
-  const files = [];
-
-  formData.append('title', 'My Vegas Vacation');
-  for (let i = 0; i < files.length; i++) {
-    formData.append(`photos_${i}`, photos.files[i]);
-  }
-
-  fetch('https://example.com/posts', {
-    method: 'POST',
-    body: formData,
-  })
-    .then(response => response.json())
-    .then(result => {
-      console.log('Success:', result);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
-
 // 下载
-export function download(path, params) {
+export function download(path) {
   console.log(path);
-  const param = JSON.stringify(params)
-  const post = param.length > 5
-  const option = {
-    method: post ? 'POST' : 'GET',
-    headers: { 'token': '' }
-  }
-  if (post) {
-    const body = new FormData()
-    for (const key in params) {
-      const value = params[key];
-      body.append(key, value)
-    }
-    option.body = body;
-  }
   return new Promise((resolve) => {
 
-    /**
-     * body 也可以是以下任意类型的实例。
-
-    ArrayBuffer
-    ArrayBufferView (Uint8Array 等)
-    Blob/File
-    string
-    URLSearchParams
-    FormData
-
-Body 类定义了以下方法（这些方法都被 Request 和 Response所实现）以获取 body 内容。这些方法都会返回一个被解析后的 Promise 对象和数据。
-
-    Request.arrayBuffer() / Response.arrayBuffer()
-    Request.blob() / Response.blob()
-    Request.formData() / Response.formData()
-    Request.json() / Response.json()
-    Request.text() / Response.text()
-
-     */
     fetch(`${baseURL}${path}`, option)
       .then((data) => data.blob() || data.json())
       .then((res) => {
