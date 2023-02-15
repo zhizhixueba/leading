@@ -44,13 +44,13 @@ Page({
       // 添加元素/计算高度
       if (rightHeight > leftHeight) {
         tag = 'right';
-        leftHeight += 240;
+        leftHeight += 260;
         if (type == 1) {
           rightHeight -= 20; // 计算高度
         }
       } else {
         tag = 'left';
-        rightHeight += 240;
+        rightHeight += 260;
         if (type == 1) {
           leftHeight -= 20; // 计算高度
         }
