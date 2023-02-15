@@ -43,15 +43,15 @@ Page({
       // 添加元素/计算高度
       if (leftHeight > rightHeight) {
         tag = 'right';
-        rightHeight += 240;
+        rightHeight += 280;
         if (type == 1) {
-          leftHeight -= 20; // 计算高度
+          leftHeight -= 30; // 计算高度
         }
       } else {
         tag = 'left';
-        leftHeight += 240;
+        leftHeight += 280;
         if (type == 1) {
-          rightHeight -= 20; // 计算高度
+          rightHeight -= 30; // 计算高度
         }
       }
       itemList.push({ tag, type, name: i});
