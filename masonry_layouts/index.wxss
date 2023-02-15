@@ -11,7 +11,7 @@
 }
 
 .item {
-  height: 520rpx;
+  height: 500rpx;
   margin: 8rpx;
   display: flex;
   border-radius: 8rpx;
@@ -19,7 +19,7 @@
 }
 
 .item2 {
-  height: 580rpx;
+  height: 560rpx;
   margin: 8rpx;
   display: flex;
   border-radius: 8rpx;
