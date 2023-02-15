@@ -1,0 +1,14 @@
+<view class="container test">
+  <!-- 列表 -->
+  <view class="list">
+    <block wx:for="{{itemList}}" wx:key="item">
+      <view wx:if="{{item.tag == 'left'}}" class="{{item.type == 0 ? 'item':'item2'}}">{{item.name}}</view>
+    </block>
+  </view>
+
+  <view class="list">
+    <block wx:for="{{itemList}}" wx:key="item">
+      <view wx:if="{{item.tag == 'right'}}" class="{{item.type == 0 ? 'item':'item2'}}">{{item.name}}</view>
+    </block>
+  </view>
+</view>
