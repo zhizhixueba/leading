@@ -3,11 +3,10 @@
  * Date: 2023-02-10
  * Desc: 瀑布流布局
  */
-//
 Page({
   data: {
     leftHeight: 0,
-    rightHeight: 0,
+    rightHeight: 1,
     itemList: [], // { tag: 'left', type: 1, name: 0 }, // tag：left-左边；right-右边   type: 0黄色方格；1粉色方格
   },
 
@@ -42,17 +41,17 @@ Page({
       let tag = '';
 
       // 添加元素/计算高度
-      if (rightHeight > leftHeight) {
+      if (leftHeight > rightHeight) {
         tag = 'right';
-        leftHeight += 260;
+        rightHeight += 240;
         if (type == 1) {
-          rightHeight -= 20; // 计算高度
+          leftHeight -= 20; // 计算高度
         }
       } else {
         tag = 'left';
-        rightHeight += 260;
+        leftHeight += 240;
         if (type == 1) {
-          leftHeight -= 20; // 计算高度
+          rightHeight -= 20; // 计算高度
         }
       }
       itemList.push({ tag, type, name: i});
