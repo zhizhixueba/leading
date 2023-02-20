@@ -3,22 +3,21 @@
  * Date: 2023-
  * Desc: 网络请求封装
  */
-import { network } from './fetch'
-import { app_config, getRequestHost, mergeHeaders, mergeParams } from './config'
+import { network, uploadFiles } from './fetch'
+import { getRequestHost, mergeHeaders, mergeParams } from './config'
 
 // 发送请求
-export function request({ path='', data={}, method='GET', headers={}, host='def', env=app_config.env, loading, loadingText='架子中...', toast, reload, count=0 } = {}) {
+export function request({ path = '', data = {}, method = 'GET', headers = {}, host = null, env = null, loading, loadingText = '架子中...', toast, reload, count = 0 } = {}) {
 
   // 隐藏加载框
   _showLoading(loading, loadingText);
 
   // 拼装参数
-  const url = `${getRequestHost(host, env)}${path}`;
+  const url = getRequestHost(host, env) + path;
   const params = mergeParams(data, url);
   const headers2 = mergeHeaders(headers);
 
   let options = { url, data: params, headers: headers2, method };
-  console.log(count,options)
 
   return new Promise((resolve) => {
 
@@ -33,12 +32,12 @@ export function request({ path='', data={}, method='GET', headers={}, host='def'
       _showLoading(false, null);
       // 请求报错
       if (result.code != 0 && reload && count < 5) {
-        const curCount = count+1;
+        const curCount = count + 1;
         const timer = setTimeout(() => {
           clearTimeout(timer);
-          request({path, data, method, headers, host, env, toast, loading, reload, count: curCount});
+          request({ path, data, method, headers, host, env, toast, loading, reload, count: curCount });
         }, 1000);
-      } else{
+      } else {
         // 显示报错 Toast
         toast && _showToast(result.message);
         resolve(result);
@@ -47,8 +46,36 @@ export function request({ path='', data={}, method='GET', headers={}, host='def'
   });
 }
 
+// 上传文件
+export function upload({path, file={}, method='POST', host=null, env=null, headers={}}={}) {
+  if(!file || file.length < 1) {
+    return Promise.resolve({code: -3, data: null})
+  }
+  // 拼装参数
+  const url = getRequestHost(host, env) + path;
+
+  const body = new FormData();
+  body.append('file', file);
+
+  let options = { url, body, headers, method };
+
+  return new Promise((resolve) => {
+    const result = { code: -1, message: '', data: null};
+
+    uploadFiles(options).then(res => {
+      console.log(res);
+      Object.assign(result, res);
+    }).catch(err => {
+      _parseErr(err, result);
+    }).finally(() => {
+      resolve(result);
+    });
+  });
+}
+
 // 解析请求返回的数据
 function _parseData(res, result) {
+  console.log('=======》parseData：', res);
   result.code = res.code;
   result.message = res.message;
   if (res.code == 0) {
@@ -58,7 +85,7 @@ function _parseData(res, result) {
 
 // 解析请求报错信息
 function _parseErr(err, result) {
-  console.log('parseErr', JSON.stringify(err));
+  console.log('=======》parseErr：', JSON.stringify(err));
   console.log(result);
 
 }
