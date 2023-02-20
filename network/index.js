@@ -7,7 +7,7 @@ import { network, uploadFiles } from './fetch'
 import { getRequestHost, mergeHeaders, mergeParams } from './config'
 
 // 发送请求
-export function request({ path = '', data = {}, method = 'GET', headers = {}, host = null, env = null, loading, loadingText = '架子中...', toast, reload, count = 0 } = {}) {
+export function request({ path = '', data = {}, method = 'GET', headers = {}, host = null, env = null, loading, loadingText = '加载中...', toast, reload, count = 0 } = {}) {
 
   // 隐藏加载框
   _showLoading(loading, loadingText);
