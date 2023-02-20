@@ -25,6 +25,7 @@ export function mergeParams(params = {}, url='') {
 // 统一处理请求头
 export function mergeHeaders(headers = {}) {
   headers.token = 'ASDIAH2H345K2HH32JH4KJ2K2J34_Test';
+  headers['Content-Type'] = 'application/json';
   return headers;
 }
 
