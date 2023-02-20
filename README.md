@@ -8,7 +8,7 @@
 #### 项目目录
 
 - [EventBus](./EventBus.js)
-- [网络封装](./network/request.js)
+- [网络封装](./network/index.js)
 - [摇一摇切环境](./shake.js)
 - [瀑布流布局](https://github.com/zzxbgit/leading/tree/main/masonry_layouts)
 
