@@ -6,17 +6,17 @@
 
 // 常量配置
 export const app_config = {
-  env: 'prod', // prod: 生产, test: 测试, dev: 开发
+  env: 'dev', // prod: 生产, test: 测试, dev: 开发
 }
 
 // 获取环境域名
-export function getRequestHost(host = 'def', env = app_config.env) {
-  return env_hosts[env][host];
+export function getRequestHost(host, env) {
+  return env_hosts[env || app_config.env][host || 'def'];
 }
 
 // 统一处理参数
-export function mergeParams(params = {}, url='') {
-  if(url.includes('store')) {
+export function mergeParams(params = {}, url = '') {
+  if (url.includes('store')) {
     params.app = 'h5_store'
   }
   return params;
@@ -33,12 +33,10 @@ export function mergeHeaders(headers = {}) {
 const env_hosts = {
   prod: {
     def: 'http://def.com',
-    auth: 'http://auth.com',
-    order: 'http://order.com',
+    oss: 'http://oss.com',
   },
-  test: {
-    def: 'http://def-test.com',
-    auth: 'http://auth-test.com',
-    order: 'http://order-test.com',
+  dev: {
+    def: 'http://localhost:8083',
+    oss: 'http://localhost:8083',
   }
 }
