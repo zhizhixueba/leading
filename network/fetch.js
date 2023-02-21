@@ -10,7 +10,7 @@ export function network({ url, data, headers, method }) {
   if (method == 'GET') {
     url = _parseData(url, data)
   } else {
-    body = JSON.stringify(data);
+    body = JSON.stringify(data); // 注意这里请求头 Content-Type = 'application/json'
   }
   return fetch(url, { method, headers, body }).then(res => res.json());
 }
@@ -31,6 +31,6 @@ function _parseData(url, params = {}) {
   for (const key in params) {
     list.push(`${key}=${params[key]}`)
   }
-  return `${url}?${list.join('&')}`
+  const unit = url.includes('?') ? '&' : (list.length > 0 ? '?' : '');
+  return `${url}${unit}${list.join('&')}`
 }
-
