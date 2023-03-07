@@ -6,6 +6,9 @@
 import { network, uploadFiles } from './fetch'
 import { getRequestHost, mergeHeaders, mergeParams } from './config'
 
+let timer_id = -1; // 
+let min_interval = 600; // 
+
 // 发送请求
 export function request({ path = '', data = {}, method = 'GET', headers = {}, host = null, env = null, loading, loadingText = '加载中...', toast, reload, count = 0 } = {}) {
 
@@ -93,7 +96,20 @@ function _parseErr(err, result) {
 // 显示加载框
 function _showLoading(show, text) {
   console.log(show, text)
+  if(timer_id) {
+    clearTimeout(timer_id);
+  }
+
+  if (show) {
+    // 显示
+  } else {
+    timer_id = setTimeout(() => {
+      clearTimeout(timer_id);
+      // 关闭
+    }, min_interval);
+  }
 }
+
 
 // 显示报错 Toast
 function _showToast(text) {
