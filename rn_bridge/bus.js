@@ -41,7 +41,8 @@ export function postEventToNative(msg) {
 
 // 监听原生消息
 function initListener() {
-  console.log('========> is IPhone:', isIos);
+  Bus.clear();
+  // console.log('========> is IPhone:', isIos);
   if (isIos) {
     // window.removeEventListener && window.removeEventListener('message');
     window.addEventListener('message', (msg = {}) => {

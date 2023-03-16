@@ -11,11 +11,16 @@ interface EventProps {
 }
 
 /** 向 RN 发送消息
- * @param {*} msg: '操作事项名' 或  {event: '操作事项名', params: '参数'}
+ * @param {*} msg: '操作事项名' 或  {event: '操作事项名', params: '参数', mode '类型'}
  * @param {*} params '参数'
+ * @param {*} mode '类型' long:长监听 设置长监听停止使用时需要手动移除
  */
 export declare function postMessage(
   msg: string | EventProps,
   params?: object | string | number,
   mode?: string
 ): Promise<any>;
+
+
+/** 移除长监听 */
+export declare function removeEvent(key: string): void;

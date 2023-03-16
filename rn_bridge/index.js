@@ -7,11 +7,8 @@
 
 import { postMessage } from './tools';
 
-export { default as RNTool } from './tools1'
-export { default as RNToolV2 } from './tools2'
-
-const bnq_rn_lib = {
+const rn_bridge = {
   postMessage
 };
 
-export default bnq_rn_lib;
+export default rn_bridge;
