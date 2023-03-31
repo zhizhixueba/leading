@@ -19,5 +19,5 @@ const res = await rn_lib.postMessage('你的想调用的API名', '参数', '事�
 const res = await rn_lib.postMessage({event: '你的想掉用的API名', params: '参数', mode: '事件类型 long表示长连接'});
 
 //  2.React Native 端 bridge 中添加对应event的具体实现
-// this.web_view.postMessage(JSON.stringify({event: 'your event type', data: 'return data'}));
+// this.web_view.postMessage(JSON.stringify({event: 'your event type', data: 'return data', code: '状态: 0成功，其他失败'}));
 ```
